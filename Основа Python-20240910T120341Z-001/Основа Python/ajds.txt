@@ -1,0 +1,18 @@
+with open("input.txt", "r") as file:  
+    n = int(file.readline())        
+    code_count = {}
+    number_count = {}
+    for _ in range(n):
+        code, mail = file.readline().split()    
+        if code in code_count:
+            if code in number_count:
+                if mail != number_count[code]:
+                    code_count[code] += 1
+        else:                                   
+            code_count[code] = 1
+            number_count[code] = mail
+
+max_code = max(code_count, key=code_count.get)  
+
+with open("output.txt", "w") as result:       
+    result.write(max_code)
